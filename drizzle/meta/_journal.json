@@ -1,0 +1,62 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1725021520314,
+      "tag": "0002_daily_banshee",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1725022937481,
+      "tag": "0003_lowly_texas_twister",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1725023019737,
+      "tag": "0004_flawless_misty_knight",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1725495941813,
+      "tag": "0005_safe_jack_power",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1725563512641,
+      "tag": "0006_regular_zodiak",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1725910349707,
+      "tag": "0007_cold_jamie_braddock",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1726695688470,
+      "tag": "0008_serious_lyja",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1726696098458,
+      "tag": "0009_milky_black_knight",
+      "breakpoints": true
+    }
+  ]
+}
