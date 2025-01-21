@@ -22,6 +22,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const fetchCache = 'force-no-store';
+
 export default function RootLayout({
   children,
 }: Readonly<{
