@@ -1,0 +1,181 @@
+{
+  "1": {
+    " Debes crear tu cuenta de facebook Business para poder asociarla a Social Mood": {
+      "": "You must create your Facebook Business account to link it to Social Mood"
+    },
+    " Ingresar a las configuraciones de perfil": "Enter profile settings"
+  },
+  "2": {
+    " Luego de crear tu cuenta debes asociarla a Social Mood tomando los siguientes pasos": "After creating your account, you must link it to Social Mood by following these steps",
+    " Hacer click en \"+\" dentro del apartado de Redes Sociales": "Click on \"+\" within the Social Networks section"
+  },
+  "3": {
+    " Seleccionar la red social": "Select the social network"
+  },
+  "4": {
+    " Seguir las instrucciones de la página para otorgar los permisos a Social Mood": {
+      "": "Follow the instructions on the page to grant permissions to Social Mood"
+    }
+  },
+  "5": {
+    " Luego de otorgar los permisos, debes seleccionar el color con el que se representara tu cuenta en la aplicación": {
+      " Con este color se mostrarán los resultados de los gráficos en la app": {
+        "": "This color will represent your account in the app's graphs"
+      }
+    }
+  },
+  "6": {
+    " Hacer click en agregar red social": {
+      "": "Click on Add Social Network"
+    }
+  },
+  "Resumen de Interacciones": "Interaction Summary",
+  "Ver Listado": "View List",
+  "mainBar": {
+    "respuestasTitle": "Responses",
+    "reglasTitle": "Rules",
+    "interaccionesTitle": "Interactions",
+    "informesTitle": "Reports and Analytics",
+    "phrase": "Monitor the moods of all your social networks."
+  },
+  "Filtros": "Filters",
+  "Sentimientos": "Sentiments",
+  "Cantidad de interacciones": "Number of Interactions",
+  "Positivo": "Positive",
+  "Negativo": "Negative",
+  "Neutral": "Neutral",
+  "Emociones": "Emotions",
+  "followers-chart": {
+    "Seguidores": "Followers"
+  },
+  "interactions-graph": {
+    "Cantidad de Comentarios": "Number of Comments"
+  },
+  "Hola": "Hello",
+  "sidebar": {
+    "Informes": "Reports and Analytics",
+    "Interacciones": "Interactions"
+  },
+  "Interacciones": "Interactions",
+  "Respuestas": "Responses",
+  "Reglas": "Rules",
+  "Cerrar sesión": "Log out",
+  "user-card": {
+    "Gestor de comunidad": "Community Manager"
+  },
+  "Activo": "Active",
+  "Inactivo": "Inactive",
+  "Filtrar por": "Filter by",
+  "Cuentas de redes sociales": "Social network accounts",
+  "Aplicar filtros": "Apply filters",
+  "Paso 1": "Step 1",
+  "Paso 2": "Step 2",
+  "FAQ - Frequently Asked Questions": "FAQ - Frequently Asked Questions",
+  "Instrucciones": "Instructions",
+  "Interacciones Capturadas": "Captured Interactions",
+  "Perfil": "Profile",
+  "Mensaje": "Message",
+  "Emisor": "Sender",
+  "Categoría": "Category",
+  "Subcategoría": "Subcategory",
+  "Fecha": "Date",
+  "Estado": "Status",
+  "Respondida": "Answered",
+  "Sin respuesta": "No response",
+  "Ajustes de Perfil": "Profile Settings",
+  "Ayuda": "Help",
+  "Redes Sociales": "Social Networks",
+  "Cargando perfiles": "Loading profiles",
+  "Cuentas": "Accounts",
+  "Plan Actual": "Current Plan",
+  "Plan Básico $25/mensual": "Basic Plan $25/month",
+  "Método de pago": "Payment Method",
+  "PayPal": "PayPal",
+  "Datos de Perfil": "Profile Data",
+  "Nombre": "First Name",
+  "Apellido": "Last Name",
+  "Dirección": "Address",
+  "Correo electrónico": "Email Address",
+  "Nueva contraseña": "New Password",
+  "Confirmar contraseña": "Confirm Password",
+  "Más información": "More Information",
+  "Próximo pago": "Next Payment",
+  "CONFIRMACIÓN": "CONFIRMATION",
+  "Estás seguro de que quieres enviar las respuestas seleccionadas": "Are you sure you want to send the selected responses",
+  "Cancelar": "Cancel",
+  "Enviar": "Send",
+  "Editar respuesta": "Edit response",
+  "Perfil de red social": "Social network profile",
+  "Respuesta automática generada": "Generated automatic response",
+  "Actualizar": "Update",
+  "Respuesta automática": "Automatic response",
+  "Supervisa las interacciones de tus redes sociales": {
+    "": "Monitor your social network interactions"
+  },
+  "Analiza los informes y las estadísticas": {
+    "": "Analyze the reports and statistics"
+  },
+  "Recomendación": "Recommendation",
+  "Consulta": "Query",
+  "Queja": "Complaint",
+  "Elogio": "Praise",
+  "Crear Regla Hijo": "Create Child Rule",
+  "Guardar": "Save",
+  "Guardando": {
+    "": {
+      "": {
+        "": "Saving"
+      }
+    }
+  },
+  "Alias de la regla": "Rule Alias",
+  "Red Social": "Social Network",
+  "Subcategorias": "Subcategories",
+  "Tipo": "Type",
+  "Padre": "Parent",
+  "Hijo": "Child",
+  "Redactar instrucciones": {
+    "": {
+      "": {
+        "": "Write instructions"
+      }
+    }
+  },
+  "Crear Regla": "Create Rule",
+  "¿Estás seguro de que quieres eliminar estar regla?": "Are you sure you want to delete this rule?",
+  "Eliminar": "Delete",
+  "Eliminando": {
+    "": {
+      "": {
+        "": "Deleting"
+      }
+    }
+  },
+  "¿Estás seguro de que quieres eliminar esta regla? Esta contiene reglas hijas asociadas": "Are you sure you want to delete this rule? It contains associated child rules",
+  "¿Estás seguro de que quieres eliminar esta regla?": "Are you sure you want to delete this rule?",
+  "Editar Regla Hijo": "Edit Child Rule",
+  "Reglas relacionadas": "Related Rules",
+  "Editar Regla": "Edit Rule",
+  "Añadir Hijo +": "Add Child +",
+  "Alias": "Alias",
+  "Subcategorías": "Subcategories",
+  "Agregar Red Social": "Add Social Network",
+  "Seleccionar plataforma": "Select platform",
+  "Elegir cuenta": "Choose account",
+  "Selecciona una plataforma primero": "Select a platform first",
+  "Personalizar color": "Customize color",
+  "Cargando colores": {
+    "": {
+      "": {
+        "": "Loading colors"
+      }
+    }
+  },
+  "Usted será redirigido a la aplicación de la red social para autorizar el acceso a su cuenta de Instagram": {
+    "": "You will be redirected to the social network app to authorize access to your Instagram account"
+  },
+  "Estás seguro de que quieres eliminar esta cuenta": "Are you sure you want to delete this account?",
+  "Idiomas": "Languages",
+  "Español": "Spanish",
+  "Ingles": "English"
+}

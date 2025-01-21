@@ -20,6 +20,15 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
       backgroundColor: "#f9f9f9",
     }}
   >
+    {/* Logo */}
+    <div style={{ textAlign: "center", marginBottom: "20px" }}>
+      <img
+        src="https://hodhnwwfmfxmqdxnoioa.supabase.co/storage/v1/object/public/email/logo.png"
+        title="Logo"
+        alt="SocialMood Logo"
+      />
+    </div>
+
     {/* Header */}
     <h1
       style={{

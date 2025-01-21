@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import SocialButton from "./social-button";
+import { useTranslation } from "react-i18next";
 
 export default function FilterModal({ isOpen, onClose, onSave }: { isOpen: boolean; onClose: () => void; onSave: (filter: any ) => void }) {
+  const {t} = useTranslation();
   const [selectedFilters, setSelectedFilters] = useState<{
     category: string[];
     subcategory: string[];
@@ -45,7 +47,7 @@ export default function FilterModal({ isOpen, onClose, onSave }: { isOpen: boole
         <img src="/delete.svg" alt="Close" className="w-6 h-6" />
 
         </button>
-        <h2 className="text-2xl font-bold mb-4">Filtrar por</h2>
+        <h2 className="text-2xl font-bold mb-4">{t('Filtrar por')}</h2>
 
         {/* Categoría */}
         <div className="mb-4">
@@ -53,7 +55,7 @@ export default function FilterModal({ isOpen, onClose, onSave }: { isOpen: boole
           <hr className="border-[#FFF] my-4" />
           <div className="flex space-x-4">
             {["Positivo", "Negativo", "Neutral"].map((category) => (
-              <label key={category} className="flex items-center space-x-2 text-black font-medium space-x-2 bg-white py-2 px-4 rounded-full">
+              <label key={category} className="flex items-center space-x-2 text-black font-medium bg-white py-2 px-4 rounded-full">
                 <input
                   type="checkbox"
                   checked={selectedFilters.category.includes(category)}
@@ -72,7 +74,7 @@ export default function FilterModal({ isOpen, onClose, onSave }: { isOpen: boole
           <hr className="border-[#FFF] my-4" />
           <div className="flex space-x-4">
             {["Consulta", "Queja", "Elogio", "Recomendación"].map((subcategory) => (
-              <label key={subcategory} className="flex items-center space-x-2 text-black font-medium space-x-2 bg-white py-2 px-4 rounded-full">
+              <label key={subcategory} className="flex items-center space-x-2 text-black font-medium bg-white py-2 px-4 rounded-full">
                 <input
                   type="checkbox"
                   checked={selectedFilters.subcategory.includes(subcategory)}

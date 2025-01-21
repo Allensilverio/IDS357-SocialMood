@@ -10,6 +10,7 @@ import AddSocialForm from "@/components/(socialmood)/add-social-form";
 import { deleteLinkedAccount, getLinkedAccounts } from "@/app/actions/(socialmood)/social.actions";
 import { Dialog } from "@/components/ui/dialog";
 import ApproveSocialDelete from "./approve-social-delete";
+import { useTranslation } from 'react-i18next'
 
 interface Perfil {
   red_social: string;
@@ -30,6 +31,8 @@ const SocialMediaCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedUsername, setSelectedUsername] = useState<string | null>(null);
+
+  const {t} = useTranslation();
 
   const fetchPerfiles = useCallback(async () => {
     setLoading(true);
@@ -77,7 +80,7 @@ const SocialMediaCard: React.FC = () => {
       <BlurredContainer customStyle="h-[30vh]">
 
         <div className="flex items-center justify-between w-full mb-3">
-          <h2 className="text-2xl font-bold">Redes Sociales</h2>
+          <h2 className="text-2xl font-bold">{t('Redes Sociales')}</h2>
           <div className="options flex items-center">
             <button
               className="w-6 h-6 bg-[#D24EA6] text-2xl rounded-xl flex items-center justify-center"
@@ -89,13 +92,13 @@ const SocialMediaCard: React.FC = () => {
         </div>
 
         {loading ? (
-          <p>Cargando perfiles...</p>
+          <p>{t('Cargando perfiles')}...</p>
         ) : (
           <table className="w-full">
             <thead className="text-left">
               <tr>
-                <th className="pb-2">Cuentas</th>
-                <th className="pb-2 px-5">Estado</th>
+                <th className="pb-2">{t('Cuentas')}</th>
+                <th className="pb-2 px-5">{t('Estado')}</th>
                 <th> </th>
               </tr>
             </thead>

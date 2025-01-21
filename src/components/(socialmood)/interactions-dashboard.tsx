@@ -71,8 +71,8 @@ const InteraccionesDashboard: React.FC<InteraccionesDashboardProps> = ({ filter 
               />
               <span className="">{interaccion.perfil.username}</span>
             </span>
-            <div className="flex-1">
-              <p className="font-semibold text-md">{interaccion.mensaje}</p>
+            <div className="flex-1 min-w-0">
+              <p className="font-semibold text-md truncate">{interaccion.mensaje}</p>
               <div className="flex items-center">
                 <p className="font-medium text-sm text-gray-300 mr-4">{interaccion.fecha}</p>
                 <span className="text-xs font-bold">@{interaccion.emisor}</span>

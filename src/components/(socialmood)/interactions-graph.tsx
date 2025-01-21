@@ -11,6 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import { getInteractionsByMonthAndUsername } from "@/app/actions/(socialmood)/get-interactions.actions"; // Ajusta la ruta al action
+import { useTranslation } from 'react-i18next';
 
 // Definir el tipo de datos del gráfico
 type ChartData = {
@@ -36,55 +37,7 @@ type Last6Month = {
 // Registrar componentes de Chart.js
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
-const options = {
-  maintainAspectRatio: false,
-  responsive: true,
-  plugins: {
-    title: {
-      display: true,
-      text: 'Cantidad de Comentarios',
-      font: {
-        size: 18,
-        family: 'Arial',
-        weight: 'bold' as const,
-      },
-      color: '#FFFFFF',
-    },
-    legend: {
-      display: true,
-      position: "top" as const,
-      labels: {
-        color: "#fff",
-        usePointStyle: true,
-      },
-      onClick: () => { }, // Disable legend click events
 
-    },
-    tooltip: {
-      enabled: true,
-      mode: "index" as const,
-      intersect: false,
-    },
-  },
-  scales: {
-    x: {
-      ticks: {
-        color: "#fff",
-      },
-      grid: {
-        display: false,
-      },
-    },
-    y: {
-      ticks: {
-        color: "#fff",
-      },
-      grid: {
-        display: false,
-      },
-    },
-  },
-};
 
 interface GraficoInteraccionesProps {
   filter: any;
@@ -95,6 +48,58 @@ const GraficoInteracciones: React.FC<GraficoInteraccionesProps> = ({ filter = {}
     labels: [],
     datasets: [],
   });
+
+  const {t} = useTranslation();
+
+  const options = {
+    maintainAspectRatio: false,
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: t('interactions-graph.Cantidad de Comentarios'),
+        font: {
+          size: 18,
+          family: 'Arial',
+          weight: 'bold' as const,
+        },
+        color: '#FFFFFF',
+      },
+      legend: {
+        display: true,
+        position: "top" as const,
+        labels: {
+          color: "#fff",
+          usePointStyle: true,
+        },
+        onClick: () => { }, // Disable legend click events
+  
+      },
+      tooltip: {
+        enabled: true,
+        mode: "index" as const,
+        intersect: false,
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: "#fff",
+        },
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        ticks: {
+          color: "#fff",
+        },
+        grid: {
+          display: false,
+        },
+      },
+    },
+  };
 
   useEffect(() => {
     const fetchData = async () => {

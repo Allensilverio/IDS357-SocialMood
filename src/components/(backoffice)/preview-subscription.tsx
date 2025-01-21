@@ -25,7 +25,11 @@ const VistaPreviaSubscripcion: React.FC<VistaPreviaSubscripcionProps> = ({ formD
         <CardTitle className="text-2xl font-bold">{formData.nombre}</CardTitle>
         <CardDescription className="text-5xl text-white font-bold mt-2">
           ${formData.precio}
-          <span className="text-lg font-normal">/ {formData.tipoFacturacion.toLowerCase()}</span>
+          <span className="text-lg font-normal">/ {formData.tipoFacturacion === "MONTH"
+      ? "Mensual"
+      : formData.tipoFacturacion === "YEAR"
+      ? "Anual"
+      : "Selecciona un tipo de facturación"}</span>
         </CardDescription>
       </CardHeader>
       <CardContent>

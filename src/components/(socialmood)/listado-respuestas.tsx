@@ -8,6 +8,7 @@ import EditForm from "@/components/(socialmood)/edit-response";
 import Image from "next/image";
 import ApproveResponse from "@/components/(socialmood)/approve-response";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -26,6 +27,7 @@ interface Respuestas {
     subcategoria: string;
     comment_id: string;
     fecha: string;
+    enlace_publicacion: string;
 }
 
 interface ListadoRespuestasTableProps {
@@ -39,6 +41,8 @@ const ListadoRespuestasTable: React.FC<ListadoRespuestasTableProps> = ({ filter 
     const [action, setAction] = useState<string>("");
     const [selectedResponse, setSelectedResponse] = useState<Respuestas | null>(null);
     const [selectedResponses, setSelectedResponses] = useState<Respuestas[]>([]);
+
+    const {t} = useTranslation();
 
     const socialIconMap: { [key: string]: string } = {
         Instagram: "/instagram.svg",
@@ -97,12 +101,24 @@ const ListadoRespuestasTable: React.FC<ListadoRespuestasTableProps> = ({ filter 
         setAction("Edit");
     };
 
+    // Función para formatear enlace_publicacion
+    const formatEnlacePublicacion = (enlacePublicacion: string): string | null => {
+        const match = enlacePublicacion.match(/\/v\d+\.\d+\/(\d+)_(\d+)/);
+        if (match) {
+            const cuentaId = match[1]; // ID de la cuenta
+            const publicacionId = match[2]; // ID de la publicación
+            return `https://www.facebook.com/${cuentaId}/posts/${publicacionId}`;
+        }
+        console.error("No se pudo formatear el enlace_publicacion:", enlacePublicacion);
+        return null;
+    };
+
     return (
         <Dialog open={openDialog}>
             <div className="bg-gradient-to-b from-white/20 via-white/10 to-white/5 text-white border border-white/30 rounded-[32px] px-10 mx-12 py-8">
                 <div className="container mx-auto p-6">
                     <div className="flex justify-between items-center mb-6">
-                        <h1 className="text-[24px] text-white font-bold">Respuestas</h1>
+                        <h1 className="text-[24px] text-white font-bold">{t('Respuestas')}</h1>
                         <div className="flex gap-x-4">
                             <button
                                 type="button"
@@ -114,7 +130,7 @@ const ListadoRespuestasTable: React.FC<ListadoRespuestasTableProps> = ({ filter 
                                 disabled={selectedResponses.length === 0}
                                 onClick={handleSendResponses}
                             >
-                                Enviar
+                                {t('Enviar')}
                                 <Image
                                     width={20}
                                     height={20}
@@ -135,38 +151,75 @@ const ListadoRespuestasTable: React.FC<ListadoRespuestasTableProps> = ({ filter 
                         <table className="min-w-full table-auto">
                             <thead>
                                 <tr className="text-[16px] md:text-[18px]">
-                                    <th className="py-2 px-3 text-left w-1/6">Perfil</th>
-                                    <th className="py-2 px-3 text-left w-1/2">Respuesta automática</th>
+                                    <th className="py-2 px-3 text-left w-1/6">{t('Perfil')}</th>
+                                    <th className="py-2 px-3 text-left w-1/2">{t('Respuesta automática')}</th>
                                     <th className="py-2 px-3 text-left w-1/6 hidden sm:table-cell"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {respuestas.map((respuesta) => (
-                                    <tr key={respuesta.unique_code}>
-                                        <td className="px-2 py-2">
-                                            <div className="flex items-center justify-center space-x-2 w-full">
-                                                <span className={cn(buttonVariants({ variant: respuesta.perfil.red_social === "Instagram" ? "blue" : "orange", size: "smBold" }), "w-full flex justify-start items-center py-2")}>
-                                                    <img src={socialIconMap[respuesta.perfil.red_social] || "/default.svg"} alt={`${respuesta.perfil.red_social} Icon`} className="flex justify-left mr-2" />
-                                                    {respuesta.perfil.username}
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td className="py-4 px-4 text-sm text-left w-1/2">{respuesta.respuesta}</td>
-                                        <td className="py-4 px-3 font-bold text-left">
-                                            <div className="flex items-center justify-center space-x-2">
-                                                <DialogTrigger className="btn w-8 h-8 rounded-[12px] flex items-center justify-center" onClick={() => handleEditRespuesta(respuesta.unique_code)}>
-                                                    <img src="/edit.svg" alt="Edit" className="w-6 h-6" />
-                                                </DialogTrigger>
-                                                <input
-                                                    type="checkbox"
-                                                    className="bg-transparent rounded-md w-5 h-5 border-white"
-                                                    onChange={() => toggleResponseSelection(respuesta)}
-                                                />
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
+                                {respuestas.map((respuesta) => {
+                                    const enlaceFacebook = formatEnlacePublicacion(respuesta.enlace_publicacion);
+
+                                    return (
+                                        <tr key={respuesta.unique_code}>
+                                            <td className="px-2 py-2 relative group">
+                                                <div className="relative group">
+                                                    <div className="flex items-center justify-center space-x-2 w-full">
+                                                        <span
+                                                            className={cn(
+                                                                buttonVariants({
+                                                                    variant: respuesta.perfil.red_social === "Instagram" ? "blue" : "orange",
+                                                                    size: "smBold",
+                                                                }),
+                                                                "w-full flex justify-start items-center py-2"
+                                                            )}
+                                                        >
+                                                            <img
+                                                                src={socialIconMap[respuesta.perfil.red_social] || "/default.svg"}
+                                                                alt={`${respuesta.perfil.red_social} Icon`}
+                                                                className="flex justify-left mr-2"
+                                                            />
+                                                            {respuesta.perfil.username}
+                                                        </span>
+                                                    </div>
+                                                    {/* Iframe visible solo en hover */}
+                                                    {enlaceFacebook && (
+                                                        <div
+                                                            className="absolute left-72 transform -translate-x-1/2 -translate-y-1/2 w-[fit] z-[9999] hidden group-hover:block"
+                                                        >
+                                                            <iframe
+                                                                src={`https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(
+                                                                    enlaceFacebook
+                                                                )}&show_text=true&width=500`}
+                                                                width="full"
+                                                                height="full"
+                                                                className="rounded-2xl shadow-lg bg-white"
+                                                            ></iframe>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </td>
+                                            <td className="py-4 px-4 text-sm text-left w-1/2">{respuesta.respuesta}</td>
+                                            <td className="py-4 px-3 font-bold text-left">
+                                                <div className="flex items-center justify-center space-x-2">
+                                                    <DialogTrigger
+                                                        className="btn w-8 h-8 rounded-[12px] flex items-center justify-center"
+                                                        onClick={() => handleEditRespuesta(respuesta.unique_code)}
+                                                    >
+                                                        <img src="/edit.svg" alt="Edit" className="w-6 h-6" />
+                                                    </DialogTrigger>
+                                                    <input
+                                                        type="checkbox"
+                                                        className="bg-transparent rounded-md w-5 h-5 border-white"
+                                                        onChange={() => toggleResponseSelection(respuesta)}
+                                                    />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
                             </tbody>
+
                         </table>
                     </div>
                 </div>

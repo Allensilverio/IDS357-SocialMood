@@ -3,9 +3,12 @@ import { usePathname } from 'next/navigation';
 import UserProfile from "@/components/(socialmood)/user-profile";
 import { getActiveUserName } from '@/app/actions/(socialmood)/auth.actions'
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
 
 
 export default function MainBar() {
+
+  const { t } = useTranslation();
 
   const [userName, setUserName] = useState<string>("")
 
@@ -29,28 +32,28 @@ export default function MainBar() {
     switch (pathname) {
       case '/app/listado/respuestas':
         return {
-          title: 'Respuestas',
+          title: t('mainBar.respuestasTitle'),
           phrase: 'Revisa las respuestas automaticas de tus interacciones.'
         };
       case '/app/reglas':
         return {
-          title: 'Reglas',
+          title: t('mainBar.reglasTitle'),
           phrase: 'Configura las reglas para tus respuestas automaticas.'
         };
       case '/app/listado-interacciones':
         return {
-          title: 'Interacciones',
-          phrase: 'Supervisa las interacciones de tus redes sociales.'
+          title: t('mainBar.interaccionesTitle'),
+          phrase: t('Supervisa las interacciones de tus redes sociales.')
         };
       case '/reports':
         return {
-          title: 'Informes y Analíticas',
-          phrase: 'Analiza los informes y las estadísticas.'
+          title: t('mainBar.informesTitle'),
+          phrase: t('Analiza los informes y las estadísticas.')
         };
       default:
         return {
-          title: 'Hola, ' + userName,
-          phrase: 'Supervisa los moods de todas tus redes sociales.'
+          title: t('Hola') + ',  ' + userName,
+          phrase: t('mainBar.phrase')
         };
     }
   };

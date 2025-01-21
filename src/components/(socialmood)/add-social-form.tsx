@@ -22,6 +22,8 @@ import Image from "next/image";
 import { loginWithFacebook, getFacebookAccounts, exchangeForLongLivedToken, debugToken } from "@/app/api/meta/meta";
 import { getSubscription, getActiveUserId } from "@/app/actions/(socialmood)/auth.actions";
 import {useRouter} from 'next/navigation';
+import { useTranslation } from 'react-i18next'
+
 
 type AddSocialFormValues = z.infer<typeof AddSocialSchema>;
 
@@ -50,6 +52,9 @@ interface Account {
 }
 
 const AddSocialForm: React.FC<AddSocialFormProps> = ({ onClose, onFormSubmit }) => {
+
+  const {t} = useTranslation();
+
   const [platforms, setPlatforms] = useState<SocialPlatform[]>([]);
   const [colors, setColors] = useState<ColorOption[]>([]);
 
@@ -271,7 +276,7 @@ const handleAccountSave = async (account: Account, selectedPlatformId: string, s
           <button className="absolute right-4 top-4 text-gray-400 hover:text-white" onClick={onClose}>
             <X className="h-6 w-6 text-white" />
           </button>
-          <h2 className="text-2xl font-bold mb-6">Agregar Red Social</h2>
+          <h2 className="text-2xl font-bold mb-6">{t('Agregar Red Social')}</h2>
 
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -281,7 +286,7 @@ const handleAccountSave = async (account: Account, selectedPlatformId: string, s
                 name="platform"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Seleccionar plataforma</FormLabel>
+                    <FormLabel>{t('Seleccionar plataforma')}</FormLabel>
                     <FormControl>
                       <Select
                         onValueChange={(value) => {
@@ -291,7 +296,7 @@ const handleAccountSave = async (account: Account, selectedPlatformId: string, s
                         defaultValue={field.value}
                       >
                         <SelectTrigger className="w-full px-3 py-2 rounded-[12px] border-transparent focus:outline-none focus:ring-2 focus:ring-primary bg-[#FFFFFF] text-black">
-                          <SelectValue placeholder="Seleccionar plataforma" />
+                          <SelectValue placeholder={t("Seleccionar plataforma")} />
                         </SelectTrigger>
                         <SelectContent>
                           {platforms.length > 0 ? (
@@ -305,7 +310,7 @@ const handleAccountSave = async (account: Account, selectedPlatformId: string, s
                             ))
                           ) : (
                             <SelectItem disabled value="loading">
-                              Cargando plataformas...
+                              (t{'Cargando plataformas...'})
                             </SelectItem>
                           )}
                         </SelectContent>
@@ -322,7 +327,7 @@ const handleAccountSave = async (account: Account, selectedPlatformId: string, s
                 name="account"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Elegir cuenta</FormLabel>
+                    <FormLabel>{t('Elegir cuenta')}</FormLabel>
                     <FormControl>
                       <Select
                         onValueChange={(value) => {
@@ -334,7 +339,7 @@ const handleAccountSave = async (account: Account, selectedPlatformId: string, s
                         defaultValue={field.value}
                       >
                         <SelectTrigger className="w-full px-3 py-2 rounded-[12px] border-transparent focus:outline-none focus:ring-2 focus:ring-primary bg-[#FFFFFF] text-black">
-                          <SelectValue placeholder="Elegir cuenta" />
+                          <SelectValue placeholder={t("Elegir cuenta")} />
                         </SelectTrigger>
                         <SelectContent>
                           {accounts.length > 0 ? (
@@ -345,7 +350,7 @@ const handleAccountSave = async (account: Account, selectedPlatformId: string, s
                             ))
                           ) : (
                             <SelectItem disabled value="loading">
-                              Selecciona una plataforma primero
+                              {t('Selecciona una plataforma primero')}
                             </SelectItem>
                           )}
                         </SelectContent>
@@ -362,7 +367,7 @@ const handleAccountSave = async (account: Account, selectedPlatformId: string, s
                 name="color"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Personalizar color</FormLabel>
+                    <FormLabel>{t('Personalizar color')}</FormLabel>
                     <FormControl>
                       <div className="flex space-x-2 justify-around px-10">
                         {colors.length > 0 ? (
@@ -378,7 +383,7 @@ const handleAccountSave = async (account: Account, selectedPlatformId: string, s
                           />
                           ))
                         ) : (
-                          <p>Cargando colores...</p>
+                          <p>{t('Cargando colores...')}</p>
                         )}
                       </div>
                     </FormControl>
@@ -390,11 +395,11 @@ const handleAccountSave = async (account: Account, selectedPlatformId: string, s
               <hr className="border-solid border-gray-400" />
 
               <p className="text-xs text-center text-gray-300">
-                Usted será redirigido a la aplicación de la red social para autorizar el acceso a su cuenta de Instagram.
+                {t('Usted será redirigido a la aplicación de la red social para autorizar el acceso a su cuenta de Instagram.')}
               </p>
 
               <Button className="w-full mt-4" type="submit">
-                Agregar Red Social
+                {t('Agregar Red Social')}
               </Button>
             </form>
           </Form>

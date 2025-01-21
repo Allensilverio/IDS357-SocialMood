@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubscriptionFormSchema } from "@/types";
 import { insertPlan, updatePlanById } from "@/app/actions/(backoffice)/subscriptions.actions";
 import { createSubscriptionPlan, getAccessToken } from "@/app/services/paypal";
+import { useEffect } from "react";
 
 interface FormData {
   nombre: string;
@@ -45,12 +46,21 @@ const FormularioSubscripcion: React.FC<FormularioSubscripcionProps> = ({ formDat
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormData>({
     resolver: zodResolver(SubscriptionFormSchema),
     defaultValues: formData,
   });
+  
+  // Sincroniza los valores del formulario con el estado `formData`
+  useEffect(() => {
+    reset(formData);
+  }, [formData, reset]);
 
   const onSubmit = async (data: FormData) => {
+
+    console.log("Datos enviados:", data); // Verifica qué valor tiene `tipoFacturacion`
+
     setLoading(true);
     try {
       if (isForUpdate) {
@@ -151,7 +161,10 @@ const FormularioSubscripcion: React.FC<FormularioSubscripcionProps> = ({ formDat
             <Select
               name="tipoFacturacion"
               value={formData.tipoFacturacion}
-              onValueChange={(value) => handleSelectChange("tipoFacturacion", value)}
+              onValueChange={(value) => {
+    console.log("Valor seleccionado:", value);
+    handleSelectChange("tipoFacturacion", value);
+  }}
               disabled={isForUpdate}
             >
               <SelectTrigger className="bg-gray-100">

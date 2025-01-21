@@ -45,6 +45,8 @@ import { getSocialMediaAccounts, getRule, getChildRules, updateRule } from "@/ap
 
 import { getSubscription, getActiveUserId } from "@/app/actions/(socialmood)/auth.actions";
 
+import { useTranslation } from "react-i18next";
+
 interface EditRuleProps {
     ruleID: number;
     onChangeForm: (newAction: string, child: number) => void;
@@ -64,6 +66,8 @@ interface Reglas {
 }
 
 export default function EditRule({ ruleID, onChangeForm }: EditRuleProps) {
+
+    const {t} = useTranslation();
 
     const [action, setAction] = useState<string>("Create");
 
@@ -100,19 +104,19 @@ export default function EditRule({ ruleID, onChangeForm }: EditRuleProps) {
     const items = [
         {
             id: "1",
-            label: "Recomendación",
+            label: t("Recomendación"),
         },
         {
             id: "2",
-            label: "Consulta",
+            label: t("Consulta"),
         },
         {
             id: "3",
-            label: "Queja",
+            label: t("Queja"),
         },
         {
             id: "4",
-            label: "Elogio",
+            label: t("Elogio"),
         }
     ] as const
 
@@ -223,14 +227,14 @@ export default function EditRule({ ruleID, onChangeForm }: EditRuleProps) {
                     <DialogHeader className="w-full">
                         <DialogTitle className="flex justify-between w-full mt-6">
                             <div className="flex"><img src="/magic-wand.svg" className="w-[49px] h-[49px]" />
-                                <h1 className="ml-2 text-[40px]">Editar Regla</h1>
+                                <h1 className="ml-2 text-[40px]">{t('Editar Regla')}</h1>
                             </div>
                             <SocialButton
                                 variant="default"
                                 isPending={isPending}
-                                defaultText="Guardar"
+                                defaultText={t("Guardar")}
                                 customStyle="text-[20px]"
-                                pendingText="Guardando..."
+                                pendingText={t("Guardando"+"...")}
                                 type="submit"
                             />
                         </DialogTitle>
@@ -248,7 +252,7 @@ export default function EditRule({ ruleID, onChangeForm }: EditRuleProps) {
                                             <FormItem>
                                                 <FormControl>
                                                     <Input
-                                                        placeholder="Alias de la regla"
+                                                        placeholder={t("Alias de la regla")}
                                                         className="w-full px-3 py-2 
                             rounded-[10px] 
                             focus:outline-none focus:ring-2 focus:ring-primary 
@@ -270,7 +274,7 @@ export default function EditRule({ ruleID, onChangeForm }: EditRuleProps) {
                                         name="red_social"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Red Social</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Red Social')}</FormLabel>
                                                 <FormControl>
                                                     <Select name="red_social" onValueChange={field.onChange} defaultValue={field.value} value={redSocial}>
                                                         <SelectTrigger disabled className="w-full px-3 py-2 
@@ -297,7 +301,7 @@ export default function EditRule({ ruleID, onChangeForm }: EditRuleProps) {
                                         name="subcategorias"
                                         render={() => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Subcategorias</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Subcategorias')}</FormLabel>
                                                 {items.map((item) => (
                                                     <FormField
                                                         key={item.id}
@@ -339,9 +343,9 @@ export default function EditRule({ ruleID, onChangeForm }: EditRuleProps) {
                                         name="instrucciones"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Instrucciones</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Instrucciones')}</FormLabel>
                                                 <FormControl>
-                                                    <Textarea placeholder="Redactar instrucciones..." className="w-full px-3 py-2 
+                                                    <Textarea placeholder={t("Redactar instrucciones...")} className="w-full px-3 py-2 
                     rounded-[12px] border-transparent
                     focus:outline-none focus:ring-2 focus:ring-primary
                     bg-[#EBEBEB] text-black " {...field} />
@@ -357,7 +361,7 @@ export default function EditRule({ ruleID, onChangeForm }: EditRuleProps) {
                                         name="tipo"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Tipo</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Tipo')}</FormLabel>
                                                 <FormControl>
                                                     <Select name="tipo" onValueChange={field.onChange} defaultValue={field.value}>
                                                         <SelectTrigger disabled className="w-full px-3 py-2 
@@ -367,8 +371,8 @@ export default function EditRule({ ruleID, onChangeForm }: EditRuleProps) {
                                                             <SelectValue />
                                                         </SelectTrigger>
                                                         <SelectContent>
-                                                            <SelectItem value="1">Padre</SelectItem>
-                                                            <SelectItem value="2">Hijo</SelectItem>
+                                                            <SelectItem value="1">{t('Padre')}</SelectItem>
+                                                            <SelectItem value="2">{t('Hijo')}</SelectItem>
                                                         </SelectContent>
                                                     </Select>
                                                 </FormControl>
@@ -377,13 +381,13 @@ export default function EditRule({ ruleID, onChangeForm }: EditRuleProps) {
                                         )}
                                     />{" "}
                                     <div>
-                                        <Label className="text-lg font-semibold">Reglas relacionadas</Label>
+                                        <Label className="text-lg font-semibold">{t('Reglas relacionadas')}</Label>
                                         <hr className="my-3 border-2 bg-white bg-opacity-30" />
                                         <div className="mt-3">
                                             <SocialButton
                                                 variant="default"
                                                 isPending={isPending}
-                                                defaultText="Añadir Hijo +"
+                                                defaultText={t("Añadir Hijo +")}
                                                 customStyle="bg-gradient-to-r from-indigo-500 to-indigo-700 text-white text-[16px]"
                                                 type="button"
                                                 size="sm"

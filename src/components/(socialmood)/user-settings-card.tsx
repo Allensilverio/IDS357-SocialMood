@@ -1,6 +1,6 @@
 "use client";
 
-import { Edit, Save, X } from "lucide-react"; // Importar el icono X
+import { Edit, Save, X, LockIcon } from "lucide-react"; // Importar el icono X
 import BlurredContainer from "@/components/(socialmood)/blur-background";
 import React, { useEffect, useState } from "react";
 import {
@@ -8,14 +8,25 @@ import {
   getActiveUserEmail,
   getActiveUserAddress,
   updateUserProfile,
+  updatePassword
 } from "@/app/actions/(socialmood)/auth.actions";
+import { toast } from "@/components/ui/use-toast";
+import { ChangePasswordSchema } from "@/types";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./laguage-switcher";
+
 
 function UserSettingsCard() {
+  const {t} = useTranslation();
+
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [userEmail, setUserEmail] = useState<string>("");
   const [userAddress, setUserAddress] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [isChangingPassword, setIsChangingPassword] = useState<boolean>(false);
 
   // Fetch current user data
   const fetchUserData = async () => {
@@ -50,7 +61,10 @@ function UserSettingsCard() {
   // Update user data
   const handleSaveChanges = async () => {
     if (!firstName || !lastName || !userEmail || !userAddress) {
-      alert("Por favor, llena todos los campos obligatorios.");
+      toast({
+        variant: "destructive",
+        description: "Por favor, llena todos los campos obligatorios.",
+      });
       return;
     }
 
@@ -61,12 +75,71 @@ function UserSettingsCard() {
         address: userAddress,
       });
       if (response.success) {
-        alert("Perfil actualizado exitosamente.");
+        toast({
+          variant: "default",
+          description: "Perfil actualizado exitosamente.",
+        });
         setIsEditing(false);
       } else {
         console.error(response.error);
       }
     } catch (error) {
+      toast({
+        variant: "destructive",
+        description: "Error al guardar los cambios",
+      });
+      console.error("Error al guardar los cambios:", error);
+    }
+  };
+
+  const handleSavePassword = async () => {
+    if (!password || !confirmPassword) {
+      toast({
+        variant: "destructive",
+        description: "Por favor, llena todos los campos obligatorios.",
+      });
+      return;
+    }
+
+    const validationResult = ChangePasswordSchema.safeParse({
+      password: password,
+      confirmPassword: confirmPassword,
+    });
+
+    if (validationResult.success === false) {
+      let message = JSON.parse(validationResult.error.message);
+      
+
+      toast({
+        variant: "destructive",
+        description: message[0].message,
+      });
+      return;
+    }
+
+
+    try {
+      const response = await updatePassword({
+        password: password,
+      });
+      if (response.success) {
+        toast({
+          variant: "default",
+          description: "Contraseña actualizada exitosamente.",
+        });
+        setPassword("");
+        setConfirmPassword("");
+        setIsEditing(false);
+        setIsChangingPassword(false);
+
+      } else {
+        console.error(response.error);
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        description: "Error al guardar los cambios",
+      });
       console.error("Error al guardar los cambios:", error);
     }
   };
@@ -75,6 +148,7 @@ function UserSettingsCard() {
   const handleCancel = () => {
     fetchUserData(); // Restablece los datos del usuario
     setIsEditing(false);
+    setIsChangingPassword(false);
   };
 
   return (
@@ -85,18 +159,33 @@ function UserSettingsCard() {
             😎
           </div>
           <div className="flex-1">
-            <h2 className="font-bold text-[26px]">Datos de Perfil</h2>
+            <h2 className="font-bold text-[26px]">{t('Datos de Perfil')}</h2>
           </div>
 
           {/* Botones de acción */}
-          {!isEditing ? (
-            <button
-              className="text-white flex items-center gap-1"
-              onClick={() => setIsEditing(true)}
-            >
-              <Edit className="w-6 h-6" />
-            </button>
-          ) : (
+          {(!isEditing && !isChangingPassword) ? (
+            <>
+              <button
+                className="text-white flex items-center gap-1"
+                onClick={() => setIsEditing(true)}
+              >
+                <Edit className="w-6 h-6" />
+              </button>
+
+              <button
+                className="text-white flex items-center gap-1"
+                onClick={() => setIsChangingPassword(true)}
+              >
+                <LockIcon className="w-6 h-6" />
+              </button>
+            </>
+
+          )
+            :
+            null
+          }
+
+          {isEditing ? (
             <div className="flex items-center gap-2">
               <button
                 className="text-green-500 hover:underline flex items-center gap-1"
@@ -111,68 +200,105 @@ function UserSettingsCard() {
                 <X className="w-6 h-6" />
               </button>
             </div>
-          )}
+          ) : null
+          }
+
+          {isChangingPassword ? (
+            <div className="flex items-center gap-2">
+              <button
+                className="text-green-500 hover:underline flex items-center gap-1"
+                onClick={handleSavePassword}
+              >
+                <Save className="w-6 h-6" />
+              </button>
+              <button
+                className="text-white hover:underline flex items-center gap-1"
+                onClick={handleCancel}
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+          ) : null
+          }
         </div>
 
         {/* Editable fields */}
-        <div className="flex flex-col gap-y-3">
-          <div className="flex gap-x-3">
-            <div className="flex-1">
-              <label className="text-sm font-medium">Nombre</label>
+        {
+          !isChangingPassword ? (
+            <div className="flex flex-col gap-y-3">
+              <div className="flex gap-x-3">
+                <div className="flex-1">
+                  <label className="text-sm font-medium">{t('Nombre')}</label>
+                  <input
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className={`bg-white text-black rounded-lg py-2 w-full ${isEditing ? "border-none" : "bg-white/30 border border-gray-300 text-white"
+                      }`}
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div className="flex-1">
+                  <label className="text-sm font-medium">{t('Apellido')}</label>
+                  <input
+                    type="text"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className={`bg-white text-black rounded-lg py-2 w-full ${isEditing ? "border-none" : "bg-white/30 border border-gray-300 text-white"
+                      }`}
+                    disabled={!isEditing}
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="text-sm font-medium">{t('Dirección')}</label>
+                <input
+                  type="text"
+                  value={userAddress}
+                  onChange={(e) => setUserAddress(e.target.value)}
+                  className={`bg-white text-black rounded-lg py-2 w-full ${isEditing ? "border-none" : "bg-white/30 border border-gray-300 text-white"
+                    }`}
+                  disabled={!isEditing}
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium">{t('Correo electrónico')}</label>
+                <input
+                  type="email"
+                  value={userEmail}
+                  disabled={true}
+                  className={`bg-white rounded-lg py-2 w-full bg-white/30 border border-gray-300 text-white`}
+                />
+              </div>
+            </div>
+          ) : 
+          (<div className="flex flex-col gap-y-3">
+            
+            <div>
+              <label className="text-sm font-medium">{t('Nueva contraseña')}</label>
               <input
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                className={`bg-white font-bold text-black rounded-lg py-2 w-full ${
-                  isEditing
-                    ? "bg-white/30 font-medium border border-gray-300"
-                    : "border-none"
-                }`}
-                readOnly={!isEditing}
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={`bg-white text-black rounded-lg py-2 w-full border-none`}
               />
             </div>
-            <div className="flex-1">
-              <label className="text-sm font-medium">Apellido</label>
+            <div>
+              <label className="text-sm font-medium">{t('Confirmar contraseña')}</label>
               <input
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                className={`bg-white font-bold text-black rounded-lg py-2 w-full ${
-                  isEditing
-                    ? "bg-white/30 font-medium border border-gray-300"
-                    : "border-none"
-                }`}
-                readOnly={!isEditing}
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className={`bg-white text-black rounded-lg py-2 w-full border-none`}
               />
             </div>
-          </div>
-          <div>
-            <label className="text-sm font-medium">Dirección</label>
-            <input
-              type="text"
-              value={userAddress}
-              onChange={(e) => setUserAddress(e.target.value)}
-              className={`bg-white font-bold text-black text-sm rounded-md px-4 py-2 w-full ${
-                isEditing ? "bg-white/30 font-medium border border-gray-300" : "border-none"
-              }`}
-              readOnly={!isEditing}
-            />
-          </div>
-          <div>
-            <label className="text-sm font-medium">Correo electrónico</label>
-            <input
-              type="email"
-              value={userEmail}
-              readOnly={true}
-              className={`bg-white font-bold text-black rounded-md px-4 py-2 w-full ${
-                isEditing
-                  ? "border border-gray-300 cursor-not-allowed"
-                  : "border-none"
-              }`}
-            />
-          </div>
+          </div>)
+        }
+        <div className="mt-4">
+        <LanguageSwitcher/>
         </div>
       </div>
+      
     </BlurredContainer>
   );
 }

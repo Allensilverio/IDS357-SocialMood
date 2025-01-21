@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import SocialButton from "./social-button";
 import { toast } from "@/components/ui/use-toast";
+import { useTranslation } from 'react-i18next'
 
 interface ApproveResponseProps {
   onOpenChange: (newOpenValue: boolean) => void;
@@ -14,6 +15,9 @@ interface ApproveResponseProps {
 }
 
 export default function ApproveSocialDelete({ onOpenChange, onConfirm }: ApproveResponseProps) {
+
+  const {t} = useTranslation();
+
   const [isPending, setIsPending] = useState(false);
 
   const handleApprove = async () => {
@@ -38,11 +42,11 @@ export default function ApproveSocialDelete({ onOpenChange, onConfirm }: Approve
     <DialogContent>
       <DialogHeader className="flex items-center justify-center">
         <img src="/thinking-face.svg" alt="Confirmación" className="w-16 h-16" />
-        <DialogTitle><h1 className="text-[33px]">CONFIRMACIÓN</h1></DialogTitle>
+        <DialogTitle><h1 className="text-[33px]">{t('CONFIRMACIÓN')}</h1></DialogTitle>
       </DialogHeader>
       <DialogDescription className="w-[70%]">
         <hr className="my-3" />
-        <p className="text-[18px] text-center">¿Estás seguro de que quieres eliminar esta cuenta?</p>
+        <p className="text-[18px] text-center">¿{t('Estás seguro de que quieres eliminar esta cuenta')}?</p>
         <div className="mt-12 flex items-center justify-center space-x-2">
           <SocialButton
             variant="google"
@@ -52,8 +56,8 @@ export default function ApproveSocialDelete({ onOpenChange, onConfirm }: Approve
           />
           <SocialButton
             variant="default"
-            defaultText="Eliminar"
-            pendingText="Eliminando..."
+            defaultText={t("Eliminar")}
+            pendingText={t("Eliminando...")}
             customStyle="text-[20px]"
             isPending={isPending}
             onClick={handleApprove}

@@ -17,14 +17,13 @@ interface FormData {
 
 export default function CreateSubPage() {
   const [formData, setFormData] = useState<FormData>({
-    nombre: "Plan Básico",
-    tipoFacturacion: "MONTH",
-    precio: "25",
-    interacciones: "500",
-    redesSociales: "3",
-    usuarios: "1",
-    descripcion:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris.",
+    nombre: "",
+    tipoFacturacion: "",
+    precio: "",
+    interacciones: "",
+    redesSociales: "",
+    usuarios: "",
+    descripcion: "",
   });
 
   const router = useRouter();
@@ -38,6 +37,7 @@ export default function CreateSubPage() {
   };
 
   const handleSelectChange = (name: keyof FormData, value: string) => {
+    console.log(`Cambiando ${name} a ${value}`); // Para depuración
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,

@@ -43,6 +43,8 @@ import { getRuleSubcategories, getSocialMediaAccounts, getRule, updateRule } fro
 import SocialButton from "./social-button";
 import { Label } from "../ui/label";
 
+import { useTranslation } from "react-i18next";
+
 interface EditRuleChildProps {
     ruleID: number;
     parentId: number;
@@ -62,6 +64,8 @@ interface Reglas {
     subcategorias: string[];
 }
 export default function EditRuleChild({ ruleID, parentId, onOpenChange }: EditRuleChildProps) {
+
+    const {t} = useTranslation();
 
     const [redSocial, setRedSocial] = useState("");
 
@@ -130,19 +134,19 @@ export default function EditRuleChild({ ruleID, parentId, onOpenChange }: EditRu
     const [Subcategorias, SetSubcategorias] = useState([
         {
             id: "1",
-            label: "Recomendación",
+            label: t("Recomendación"),
         },
         {
             id: "2",
-            label: "Consulta",
+            label: t("Consulta"),
         },
         {
             id: "3",
-            label: "Queja",
+            label: t("Queja"),
         },
         {
             id: "4",
-            label: "Elogio",
+            label: t("Elogio"),
         }
     ]);
 
@@ -214,14 +218,14 @@ export default function EditRuleChild({ ruleID, parentId, onOpenChange }: EditRu
                     <DialogHeader className="w-full">
                         <DialogTitle className="flex justify-between w-full mt-6">
                             <div className="flex"><img src="/magic-wand.svg" className="w-[49px] h-[49px]" />
-                                <h1 className="ml-2 text-[40px]">Editar Regla Hijo</h1>
+                                <h1 className="ml-2 text-[40px]">{t('Editar Regla Hijo')}</h1>
                             </div>
                             <SocialButton
                                 variant="default"
                                 isPending={isPending}
-                                defaultText="Guardar"
+                                defaultText={t("Guardar")}
                                 customStyle="text-[20px]"
-                                pendingText="Guardando..."
+                                pendingText={t("Guardando...")}
                                 type="button"
                                 onClick={() => { onSubmit(form.getValues()) }}
                             />
@@ -240,7 +244,7 @@ export default function EditRuleChild({ ruleID, parentId, onOpenChange }: EditRu
                                             <FormItem>
                                                 <FormControl>
                                                     <Input
-                                                        placeholder="Alias de la regla"
+                                                        placeholder={t("Alias de la regla")}
                                                         className="w-full px-3 py-2 
                             rounded-[10px] 
                             focus:outline-none focus:ring-2 focus:ring-primary 
@@ -262,7 +266,7 @@ export default function EditRuleChild({ ruleID, parentId, onOpenChange }: EditRu
                                         name="red_social"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Red Social</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Red Social')}</FormLabel>
                                                 <FormControl>
                                                     <Select name="red_social" onValueChange={field.onChange} value={redSocial}>
                                                         <SelectTrigger disabled className="w-full px-3 py-2 
@@ -289,7 +293,7 @@ export default function EditRuleChild({ ruleID, parentId, onOpenChange }: EditRu
                                         name="subcategorias"
                                         render={() => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Subcategorias</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Subcategorias')}</FormLabel>
                                                 {Subcategorias.map((item) => (
                                                     <FormField
                                                         key={item.id}
@@ -331,7 +335,7 @@ export default function EditRuleChild({ ruleID, parentId, onOpenChange }: EditRu
                                         name="instrucciones"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Instrucciones</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Instrucciones')}</FormLabel>
                                                 <FormControl>
                                                     <Textarea placeholder="Redactar instrucciones..." className="w-full px-3 py-2 
                     rounded-[12px] border-transparent
@@ -349,7 +353,7 @@ export default function EditRuleChild({ ruleID, parentId, onOpenChange }: EditRu
                                         name="tipo"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Tipo</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Tipo')}</FormLabel>
                                                 <FormControl>
                                                     <Select name="tipo" onValueChange={field.onChange} defaultValue={field.value}>
                                                         <SelectTrigger disabled className="w-full px-3 py-2 
@@ -359,8 +363,8 @@ export default function EditRuleChild({ ruleID, parentId, onOpenChange }: EditRu
                                                             <SelectValue />
                                                         </SelectTrigger>
                                                         <SelectContent>
-                                                            <SelectItem value="1">Padre</SelectItem>
-                                                            <SelectItem value="2">Hijo</SelectItem>
+                                                            <SelectItem value="1">{t('Padre')}</SelectItem>
+                                                            <SelectItem value="2">{t('Hijo')}</SelectItem>
                                                         </SelectContent>
                                                     </Select>
                                                 </FormControl>
@@ -369,7 +373,7 @@ export default function EditRuleChild({ ruleID, parentId, onOpenChange }: EditRu
                                         )}
                                     />{" "}
                                     <div>
-                                        <Label className="text-lg font-semibold">Reglas relacionadas</Label>
+                                        <Label className="text-lg font-semibold">{t('Reglas relacionadas')}</Label>
                                         <hr className="my-3 border-2 bg-white bg-opacity-30" />
                                         <div className="mt-1">
                                             <div className="space-y-2 mt-2">

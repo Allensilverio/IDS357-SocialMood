@@ -25,6 +25,7 @@ import {
 import { toast } from "@/components/ui/use-toast";
 import { updateRespuesta } from "@/app/actions/(socialmood)/get-interactions.actions";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 interface EditFormProps {
     onClose: () => void;
@@ -42,6 +43,7 @@ interface EditFormProps {
 }
 
 const EditResponse: React.FC<EditFormProps> = ({ onClose, onUpdate, defaultValues }) => {
+    const {t} = useTranslation();
     const router = useRouter();
     const [isPending, setIsPending] = useState(false);
 
@@ -95,13 +97,13 @@ const EditResponse: React.FC<EditFormProps> = ({ onClose, onUpdate, defaultValue
             <div className="flex w-full max-w-3xl space-x-10">
                 <div className="flex-1">
                     <DialogHeader>
-                        <DialogTitle className="text-3xl font-bold mb-4">Editar respuesta</DialogTitle>
+                        <DialogTitle className="text-3xl font-bold mb-4">{t('Editar respuesta')}</DialogTitle>
                     </DialogHeader>
 
                     <div className="space-y-4">
                         {/* Fecha */}
                         <div className="flex items-center justify-between">
-                            <p className="text-md text-white">Fecha</p>
+                            <p className="text-md text-white">{t('Fecha')}</p>
                             <div className="bg-[#30BD92] text-white px-4 py-2 rounded-full text-xs font-medium">
                                 {defaultValues.fecha}
                             </div>
@@ -109,7 +111,7 @@ const EditResponse: React.FC<EditFormProps> = ({ onClose, onUpdate, defaultValue
 
                         {/* Perfil de red social */}
                         <div>
-                            <p className="text-md text-white mb-2">Perfil de red social</p>
+                            <p className="text-md text-white mb-2">{t('Perfil de red social')}</p>
                             <div className="flex items-center justify-center space-x-2 w-full">
                                 <span className="bg-white -full flex justify-start items-center rounded-lg w-full" >
                                     <img
@@ -125,7 +127,7 @@ const EditResponse: React.FC<EditFormProps> = ({ onClose, onUpdate, defaultValue
                         {/* Categoría y Subcategoría */}
                         <div className="flex space-x-4">
                             <div className="flex-1">
-                                <p className="text-md text-white mb-2">Categoría</p>
+                                <p className="text-md text-white mb-2">{t('Categoría')}</p>
                                 <div className="flex items-center space-x-2">
                                     <span
                                         className={cn(buttonVariants({ variant: "angry", size: "smBold" }))}
@@ -141,7 +143,7 @@ const EditResponse: React.FC<EditFormProps> = ({ onClose, onUpdate, defaultValue
                                 </div>
                             </div>
                             <div className="flex-1">
-                                <p className="text-md text-white mb-2">Subcategoría</p>
+                                <p className="text-md text-white mb-2">{t('Subcategoría')}</p>
                                 <div className="flex items-center space-x-2">
                                     <span
                                         className={cn(buttonVariants({ variant: "angry", size: "smBold" }))}
@@ -160,7 +162,7 @@ const EditResponse: React.FC<EditFormProps> = ({ onClose, onUpdate, defaultValue
 
                         {/* Emisor */}
                         <div>
-                            <p className="text-md text-white">Emisor</p>
+                            <p className="text-md text-white">{t('Emisor')}</p>
                             <div className="w-full mt-2 px-3 py-2 bg-white rounded-lg border">{defaultValues.emisor}</div>
                         </div>
                     </div>
@@ -175,7 +177,7 @@ const EditResponse: React.FC<EditFormProps> = ({ onClose, onUpdate, defaultValue
                                 name="respuesta"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="text-md font-medium text-white">Respuesta automática generada</FormLabel>
+                                        <FormLabel className="text-md font-medium text-white">{t('Respuesta automática generada')}</FormLabel>
                                         <FormControl>
                                             <Textarea
                                                 className="w-full h-64 mt-2 px-3 py-2 bg-white rounded-lg border"
@@ -188,7 +190,7 @@ const EditResponse: React.FC<EditFormProps> = ({ onClose, onUpdate, defaultValue
                             />
 
                             <Button type="submit" className="w-full mt-4 bg-pink-500 hover:bg-pink-600 text-white">
-                                Actualizar
+                                {t('Actualizar')}
                             </Button>
                         </form>
                     </Form>

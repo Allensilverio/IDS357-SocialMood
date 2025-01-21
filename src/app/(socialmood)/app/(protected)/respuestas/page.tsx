@@ -4,8 +4,11 @@ import ListadoRespuestasTable from '@/components/(socialmood)/listado-respuestas
 import FilterModal from '@/components/(socialmood)/filter-modal-interaction'
 import SocialButton from '@/components/(socialmood)/social-button'
 import SearchBar from '@/components/(socialmood)/searchbar'
+import { useTranslation } from "react-i18next";
 
 function PantallaGestionRespuestasPage() {
+
+  const {t} = useTranslation();
 
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false); // Controla la visibilidad del modal
 
@@ -46,7 +49,7 @@ function PantallaGestionRespuestasPage() {
           <SocialButton
             customStyle="w-32"
             variant="default"
-            defaultText="Filtros"
+            defaultText={t("Filtros")}
             type="button" // Cambiado a 'button' para evitar enviar un formulario
             onClick={openFilterModal}
           />

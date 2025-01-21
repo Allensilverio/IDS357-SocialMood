@@ -4,6 +4,7 @@ import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { getFacebookAccountFollowers } from '@/app/actions/(socialmood)/dashboard.actions';
 import { getAccountColor } from '@/app/actions/(socialmood)/social.actions'; // Asegúrate de ajustar la ruta
+import { useTranslation } from 'react-i18next';
 
 // Registrar componentes de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -35,6 +36,8 @@ const SeguidoresChart: React.FC<SeguidoresChartProps> = ({ social_medias = [] })
     labels: [],
     datasets: [],
   });
+
+  const {t} = useTranslation();
 
   const [loading, setLoading] = useState(true); // Estado de carga
 
@@ -72,7 +75,7 @@ const SeguidoresChart: React.FC<SeguidoresChartProps> = ({ social_medias = [] })
           labels,
           datasets: [
             {
-              label: 'Seguidores',
+              label: t('followers-chart.Seguidores'),
               data,
               backgroundColor: colors,
               borderWidth: 1,
@@ -98,7 +101,7 @@ const SeguidoresChart: React.FC<SeguidoresChartProps> = ({ social_medias = [] })
     plugins: {
       title: {
         display: true,
-        text: 'Seguidores',
+        text: t('followers-chart.Seguidores'),
         font: {
           size: 18,
           family: 'Arial',
@@ -145,7 +148,7 @@ const SeguidoresChart: React.FC<SeguidoresChartProps> = ({ social_medias = [] })
     >
       {loading ? (
         <div className="absolute inset-0 flex justify-center items-center bg-white/10">
-          <p className="text-white text-lg">Cargando...</p>
+          <p className="text-white text-lg">{t('Cargando'+'...')}</p>
         </div>
       ) : (
         <div className="absolute inset-0 py-6 px-4">

@@ -8,9 +8,13 @@ import EmotionsChart from "@/components/(socialmood)/emotions-chart";
 import CategoryChart from "@/components/(socialmood)/category-chart";
 import SocialButton from '@/components/(socialmood)/social-button';
 import FilterModal from "@/components/(socialmood)/filter-modal-dashboard";
+import { useTranslation } from 'react-i18next';
 
 
 function dashboard() {
+
+  const { t } = useTranslation();
+
   const router = useRouter();
 
   const [isFilterModalOpen, setIsFilterModalOpen] = React.useState(false); // Controla la visibilidad del modal
@@ -35,11 +39,11 @@ function dashboard() {
     // Contenedor principal con scroll
 
     <div className="">
-      <div className="flex justify-end space-x-4">
+      <div className="flex justify-end space-x-4 p-4">
         <SocialButton
           customStyle="w-32"
           variant="default"
-          defaultText="Filtros"
+          defaultText={t('Filtros')}
           type="button" // Cambiado a 'button' para evitar enviar un formulario
           onClick={openFilterModal}
         />
@@ -54,11 +58,11 @@ function dashboard() {
         <div className='w-full h-full flex space-x-10'>
           <div className="w-full h-full space-y-3">
             <div className='w-full flex items-center'>
-              <h2 className="text-[20px] text-nowrap text-white text-right font-bold">Resumen de Interacciones</h2>
+              <h2 className="text-[20px] text-nowrap text-white text-right font-bold">{t('Resumen de Interacciones')}</h2>
               <span
                 onClick={handleRedirect}
                 className="w-full text-right text-[14px] text-[#A6A2B4] hover:underline font-semibold cursor-pointer">
-                Ver listado
+                {t('Ver Listado')}
               </span>
             </div>
             <InteraccionesDashboard filter={filter} />

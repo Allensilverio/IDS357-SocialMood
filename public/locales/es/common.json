@@ -1,0 +1,181 @@
+{
+  "1": {
+    " Debes crear tu cuenta de facebook Business para poder asociarla a Social Mood": {
+      "": " Debes crear tu cuenta de facebook Business para poder asociarla a Social Mood"
+    },
+    " Ingresar a las configuraciones de perfil": " Ingresar a las configuraciones de perfil"
+  },
+  "2": {
+    " Luego de crear tu cuenta debes asociarla a Social Mood tomando los siguientes pasos": " Luego de crear tu cuenta debes asociarla a Social Mood tomando los siguientes pasos",
+    " Hacer click en \"+\" dentro del apartado de Redes Sociales": " Hacer click en \"+\" dentro del apartado de Redes Sociales"
+  },
+  "3": {
+    " Seleccionar la red social": " Seleccionar la red social"
+  },
+  "4": {
+    " Seguir las instrucciones de la página para otorgar los permisos a Social Mood": {
+      "": " Seguir las instrucciones de la página para otorgar los permisos a Social Mood"
+    }
+  },
+  "5": {
+    " Luego de otorgar los permisos, debes seleccionar el color con el que se representara tu cuenta en la aplicación": {
+      " Con este color se mostrarán los resultados de los gráficos en la app": {
+        "": " Con este color se mostrarán los resultados de los gráficos en la app"
+      }
+    }
+  },
+  "6": {
+    " Hacer click en agregar red social": {
+      "": " Hacer click en agregar red social"
+    }
+  },
+  "Resumen de Interacciones": "Resumen de Interacciones",
+  "Ver Listado": "Ver Listado",
+  "mainBar": {
+    "respuestasTitle": "Respuestas",
+    "reglasTitle": "Reglas",
+    "interaccionesTitle": "Interacciones",
+    "informesTitle": "Informes y Analíticas",
+    "phrase": "Supervisa los moods de todas tus redes sociales."
+  },
+  "Filtros": "Filtros",
+  "Sentimientos": "Sentimientos",
+  "Cantidad de interacciones": "Cantidad de interacciones",
+  "Positivo": "Positivo",
+  "Negativo": "Negativo",
+  "Neutral": "Neutral",
+  "Emociones": "Emociones",
+  "followers-chart": {
+    "Seguidores": "Seguidores"
+  },
+  "interactions-graph": {
+    "Cantidad de Comentarios": "Cantidad de comentarios"
+  },
+  "Hola": "Hola",
+  "sidebar": {
+    "Informes": "Informes y Analíticas",
+    "Interacciones": "Interacciones"
+  },
+  "Interacciones": "Interacciones",
+  "Respuestas": "Respuestas",
+  "Reglas": "Reglas",
+  "Cerrar sesión": "Cerrar sesión",
+  "user-card": {
+    "Gestor de comunidad": "Gestor de comunidad"
+  },
+  "Activo": "Activo",
+  "Inactivo": "Inactivo",
+  "Filtrar por": "Filtrar por",
+  "Cuentas de redes sociales": "Cuentas de redes sociales",
+  "Aplicar filtros": "Aplicar filtros",
+  "Paso 1": "Paso 1",
+  "Paso 2": "Paso 2",
+  "FAQ - Frequently Asked Questions": "FAQ - Frequently Asked Questions",
+  "Instrucciones": "Instrucciones",
+  "Interacciones Capturadas": "Interacciones Capturadas",
+  "Perfil": "Perfil",
+  "Mensaje": "Mensaje",
+  "Emisor": "Emisor",
+  "Categoría": "Categoría",
+  "Subcategoría": "Subcategoría",
+  "Fecha": "Fecha",
+  "Estado": "Estado",
+  "Respondida": "Respondida",
+  "Sin respuesta": "Sin respuesta",
+  "Ajustes de Perfil": "Ajustes de Perfil",
+  "Ayuda": "Ayuda",
+  "Redes Sociales": "Redes Sociales",
+  "Cargando perfiles": "Cargando perfiles",
+  "Cuentas": "Cuentas",
+  "Plan Actual": "Plan Actual",
+  "Plan Básico $25/mensual": "Plan Básico $25/mensual",
+  "Método de pago": "Método de pago",
+  "PayPal": "PayPal",
+  "Datos de Perfil": "Datos de Perfil",
+  "Nombre": "Nombre",
+  "Apellido": "Apellido",
+  "Dirección": "Dirección",
+  "Correo electrónico": "Correo electrónico",
+  "Nueva contraseña": "Nueva contraseña",
+  "Confirmar contraseña": "Confirmar contraseña",
+  "Más información": "Más información",
+  "Próximo pago": "Próximo pago",
+  "CONFIRMACIÓN": "CONFIRMACIÓN",
+  "Estás seguro de que quieres enviar las respuestas seleccionadas": "Estás seguro de que quieres enviar las respuestas seleccionadas",
+  "Cancelar": "Cancelar",
+  "Enviar": "Enviar",
+  "Editar respuesta": "Editar respuesta",
+  "Perfil de red social": "Perfil de red social",
+  "Respuesta automática generada": "Respuesta automática generada",
+  "Actualizar": "Actualizar",
+  "Respuesta automática": "Respuesta automática",
+  "Supervisa las interacciones de tus redes sociales": {
+    "": "Supervisa las interacciones de tus redes sociales"
+  },
+  "Analiza los informes y las estadísticas": {
+    "": "Analiza los informes y las estadísticas"
+  },
+  "Recomendación": "Recomendación",
+  "Consulta": "Consulta",
+  "Queja": "Queja",
+  "Elogio": "Elogio",
+  "Crear Regla Hijo": "Crear Regla Hijo",
+  "Guardar": "Guardar",
+  "Guardando": {
+    "": {
+      "": {
+        "": "Guardando"
+      }
+    }
+  },
+  "Alias de la regla": "Alias de la regla",
+  "Red Social": "Red Social",
+  "Subcategorias": "Subcategorías",
+  "Tipo": "Tipo",
+  "Padre": "Padre",
+  "Hijo": "Hijo",
+  "Redactar instrucciones": {
+    "": {
+      "": {
+        "": "Redactar instrucciones"
+      }
+    }
+  },
+  "Crear Regla": "Crear Regla",
+  "¿Estás seguro de que quieres eliminar estar regla?": "¿Estás seguro de que quieres eliminar esta regla?",
+  "Eliminar": "Eliminar",
+  "Eliminando": {
+    "": {
+      "": {
+        "": "Eliminando"
+      }
+    }
+  },
+  "¿Estás seguro de que quieres eliminar esta regla? Esta contiene reglas hijas asociadas": "¿Estás seguro de que quieres eliminar esta regla? Esta contiene reglas hijas asociadas",
+  "¿Estás seguro de que quieres eliminar esta regla?": "¿Estás seguro de que quieres eliminar esta regla?",
+  "Editar Regla Hijo": "Editar Regla Hijo",
+  "Reglas relacionadas": "Reglas relacionadas",
+  "Editar Regla": "Editar Regla",
+  "Añadir Hijo +": "Añadir Hijo +",
+  "Alias": "Alias",
+  "Subcategorías": "Subcategorías",
+ "Agregar Red Social": "Agregar Red Social",
+  "Seleccionar plataforma": "Seleccionar plataforma",
+  "Elegir cuenta": "Elegir cuenta",
+  "Selecciona una plataforma primero": "Selecciona una plataforma primero",
+  "Personalizar color": "Personalizar color",
+  "Cargando colores": {
+    "": {
+      "": {
+        "": "Cargando colores"
+      }
+    }
+  },
+  "Usted será redirigido a la aplicación de la red social para autorizar el acceso a su cuenta de Instagram": {
+    "": "Usted será redirigido a la aplicación de la red social para autorizar el acceso a su cuenta de Instagram"
+  },
+  "Estás seguro de que quieres eliminar esta cuenta": "¿Estás seguro de que quieres eliminar esta cuenta?",
+  "Idiomas": "Idiomas",
+  "Español": "Español",
+  "Ingles": "Ingles"
+}

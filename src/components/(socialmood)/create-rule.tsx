@@ -45,30 +45,34 @@ import { getSubscription, getActiveUserId } from "@/app/actions/(socialmood)/aut
 
 import SocialButton from "./social-button";
 
+import { useTranslation } from "react-i18next";
+
 interface CreateRuleProps {
     onOpenChange: (newOpenValue: boolean) => void;
 }
 
-const items = [
-    {
-        id: "1",
-        label: "Recomendación",
-    },
-    {
-        id: "2",
-        label: "Consulta",
-    },
-    {
-        id: "3",
-        label: "Queja",
-    },
-    {
-        id: "4",
-        label: "Elogio",
-    }
-] as const
-
 export default function CreateRule({ onOpenChange }: CreateRuleProps) {
+
+    const {t} = useTranslation();
+
+    const items = [
+        {
+            id: "1",
+            label: t("Recomendación"),
+        },
+        {
+            id: "2",
+            label: t("Consulta"),
+        },
+        {
+            id: "3",
+            label: t("Queja"),
+        },
+        {
+            id: "4",
+            label: t("Elogio"),
+        }
+    ] as const
 
     const [isPending, setIsPending] = useState(false);
 
@@ -148,14 +152,14 @@ export default function CreateRule({ onOpenChange }: CreateRuleProps) {
                     <DialogHeader className="w-full">
                         <DialogTitle className="flex justify-between w-full mt-6">
                             <div className="flex"><img src="/magic-wand.svg" className="w-[49px] h-[49px]" />
-                                <h1 className="ml-2 text-[40px]">Crear Regla</h1>
+                                <h1 className="ml-2 text-[40px]">{t('Crear Regla')}</h1>
                             </div>
                             <SocialButton
                                 variant="default"
                                 isPending={isPending}
-                                defaultText="Guardar"
+                                defaultText={t("Guardar")}
                                 customStyle="text-[20px]"
-                                pendingText="Guardando..."
+                                pendingText={t("Guardando"+"...")}
                                 type="submit"
                             />
                         </DialogTitle>
@@ -173,7 +177,7 @@ export default function CreateRule({ onOpenChange }: CreateRuleProps) {
                                             <FormItem>
                                                 <FormControl>
                                                     <Input
-                                                        placeholder="Alias de la regla"
+                                                        placeholder={t("Alias de la regla")}
                                                         className="w-full px-3 py-2 
                             rounded-[10px] 
                             focus:outline-none focus:ring-2 focus:ring-primary 
@@ -195,7 +199,7 @@ export default function CreateRule({ onOpenChange }: CreateRuleProps) {
                                         name="red_social"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Red Social</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Red Social')}</FormLabel>
                                                 <FormControl>
                                                     <Select name="red_social" onValueChange={field.onChange} defaultValue={field.value}>
                                                         <SelectTrigger className="w-full px-3 py-2 
@@ -222,7 +226,7 @@ export default function CreateRule({ onOpenChange }: CreateRuleProps) {
                                         name="subcategorias"
                                         render={() => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Subcategorias</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Subcategorias')}</FormLabel>
                                                 {items.map((item) => (
                                                     <FormField
                                                         key={item.id}
@@ -266,7 +270,7 @@ export default function CreateRule({ onOpenChange }: CreateRuleProps) {
                                         name="tipo"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Tipo</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Tipo')}</FormLabel>
                                                 <FormControl>
                                                     <Select name="tipo" onValueChange={field.onChange} defaultValue={field.value}>
                                                         <SelectTrigger disabled className="w-full px-3 py-2 
@@ -276,8 +280,8 @@ export default function CreateRule({ onOpenChange }: CreateRuleProps) {
                                                             <SelectValue />
                                                         </SelectTrigger>
                                                         <SelectContent>
-                                                            <SelectItem value="1">Padre</SelectItem>
-                                                            <SelectItem value="2">Hijo</SelectItem>
+                                                            <SelectItem value="1">{t('Padre')}</SelectItem>
+                                                            <SelectItem value="2">{t('Hijo')}</SelectItem>
                                                         </SelectContent>
                                                     </Select>
                                                 </FormControl>
@@ -294,9 +298,9 @@ export default function CreateRule({ onOpenChange }: CreateRuleProps) {
                                         name="instrucciones"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Instrucciones</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Instrucciones')}</FormLabel>
                                                 <FormControl>
-                                                    <Textarea placeholder="Redactar instrucciones..." className="w-full px-3 py-2 
+                                                    <Textarea placeholder={t("Redactar instrucciones"+"...")} className="w-full px-3 py-2 
                     rounded-[12px] border-transparent
                     focus:outline-none focus:ring-2 focus:ring-primary
                     bg-[#EBEBEB] text-black " {...field} />

@@ -10,11 +10,11 @@ import SocialButton from "./social-button";
 
 import { useState } from "react";
 
-
-
 import { toast } from "@/components/ui/use-toast";
 
 import { deleteRule, ruleHasChildren } from "@/app/actions/(socialmood)/rules.actions";
+
+import { useTranslation } from "react-i18next";
 
 interface DeleteRuleProps {
     ruleID: number;
@@ -23,6 +23,9 @@ interface DeleteRuleProps {
 
 
 export default function DeleteRule({ ruleID, onOpenChange }: DeleteRuleProps) {
+
+    const {t} = useTranslation();
+
     const [isPending, setIsPending] = useState(false);
 
     const [hasChildren, setHasChildren] = useState(false);
@@ -62,29 +65,29 @@ export default function DeleteRule({ ruleID, onOpenChange }: DeleteRuleProps) {
         <DialogContent>
             <DialogHeader className="flex items-center justify-center">
                 <img src="/thinking-face.svg" alt="Alert" className="w-66 h-66" />
-                <DialogTitle><h1 className="text-[33px]">CONFIRMACIÓN</h1></DialogTitle>
+                <DialogTitle><h1 className="text-[33px]">{t('CONFIRMACIÓN')}</h1></DialogTitle>
             </DialogHeader>
 
             <DialogDescription className="w-[70%]">
                 <hr className="my-3" />
                 <p className="text-[18px] text-center">
                     {hasChildren
-                        ? '¿Estás seguro de que quieres eliminar esta regla? Esta contiene reglas hijas asociadas'
-                        : '¿Estás seguro de que quieres eliminar esta regla?'}
+                        ? t('¿Estás seguro de que quieres eliminar esta regla? Esta contiene reglas hijas asociadas')
+                        : t('¿Estás seguro de que quieres eliminar esta regla?')}
                 </p>
 
                 <div className="mt-12 flex items-center justify-center space-x-2 ">
                     <SocialButton
                         variant="google"
-                        defaultText="Cancelar"
+                        defaultText={t("Cancelar")}
                         customStyle="text-black bg-[#EBEBEBA8]/[66%] text-[20px]"
                         onClick={() => { onOpenChange(false) }}
                     />
 
                     <SocialButton
                         variant="default"
-                        defaultText="Eliminar"
-                        pendingText="Eliminando..."
+                        defaultText={t("Eliminar")}
+                        pendingText={t("Eliminando...")}
                         customStyle="text-[20px]"
                         isPending={isPending}
                         onClick={handleDeleteRule}

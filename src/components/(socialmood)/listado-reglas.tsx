@@ -10,6 +10,7 @@ import DeleteRule from "@/components/(socialmood)/delete-rule";
 import CreateRuleChild from "@/components/(socialmood)/create-rule-child";
 import EditRuleChild from "@/components/(socialmood)/edit-rule-child";
 import DeleteRuleChild from "@/components/(socialmood)/delete-rule-child";
+import { useTranslation } from "react-i18next";
 
 import {
     Dialog,
@@ -36,6 +37,8 @@ interface ListadoReglasTableProps {
 }
 
 const ListadoReglasTable: React.FC<ListadoReglasTableProps> = ({ filter }) => {
+
+    const {t} = useTranslation();
 
     const [Reglas, setReglas] = useState<Reglas[]>([]);
     const [Open, setOpen] = useState<boolean>(false);
@@ -141,7 +144,7 @@ const ListadoReglasTable: React.FC<ListadoReglasTableProps> = ({ filter }) => {
             <div className="bg-gradient-to-b from-white/20 via-white/10 to-white/5 text-white border border-white/30 rounded-[32px] px-10 mx-12 py-8">
                 <div className="container mx-auto p-6">
                     <div className="flex justify-between mb-6">
-                        <h1 className="text-[24px] text-white font-bold">Reglas</h1>
+                        <h1 className="text-[24px] text-white font-bold">{t('Reglas')}</h1>
                         <div className="flex items-center space-x-1">
                             <DialogTrigger className="btn w-8 h-8 bg-[#D24EA6] rounded-lg" onClick={handleAddRule}>
                                 <span className="text-[#FFF] text-2xl">+</span>
@@ -164,9 +167,9 @@ const ListadoReglasTable: React.FC<ListadoReglasTableProps> = ({ filter }) => {
                         <table className="min-w-full table-auto ">
                             <thead>
                                 <tr className="text-[16px] md:text-[18px]">
-                                    <th className="py-2 px-3 text-left">Perfil</th>
-                                    <th className="py-2 px-3 text-left w-1/4">Alias</th>
-                                    <th className="py-2 px-3 text-left">Subcategorías</th>
+                                    <th className="py-2 px-3 text-left">{t('Perfil')}</th>
+                                    <th className="py-2 px-3 text-left w-1/4">{t('Alias')}</th>
+                                    <th className="py-2 px-3 text-left">{t('Subcategorías')}</th>
                                     <th className="py-2 px-3 text-left hidden sm:table-cell"></th>
                                 </tr>
                             </thead>

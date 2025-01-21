@@ -2,9 +2,10 @@
 import React, { useState, useEffect } from "react";
 import SocialButton from "./social-button";
 import { getSocialMediaNameSubscription } from "@/app/actions/(socialmood)/auth.actions"
+import { useTranslation } from "react-i18next";
 
 export default function FilterModal({ isOpen, onClose, onSave }: { isOpen: boolean; onClose: () => void; onSave: (filter: any) => void }) {
-
+  const {t} = useTranslation();
   const [socialMedias, setSocialMedias] = useState<string[]>([]);
 
   const [selectedFilters, setSelectedFilters] = useState<{
@@ -55,15 +56,15 @@ export default function FilterModal({ isOpen, onClose, onSave }: { isOpen: boole
           <img src="/delete.svg" alt="Close" className="w-6 h-6" />
 
         </button>
-        <h2 className="text-2xl font-bold mb-4">Filtrar por</h2>
+        <h2 className="text-2xl font-bold mb-4">{t('Filtrar por')}</h2>
 
         {/* Social Medias */}
         <div className="mb-4">
-          <h3 className="block text-lg font-medium">Cuentas de redes sociales:</h3>
+          <h3 className="block text-lg font-medium">{t('Cuentas de redes sociales')}:</h3>
           <hr className="border-[#FFF] my-4" />
           <div className="flex space-x-4">
             {socialMedias.map((social) => (
-              <label key={social} className="flex items-center space-x-2 text-black font-medium space-x-2 bg-white py-2 px-4 rounded-full">
+              <label key={social} className="flex items-center text-black font-medium space-x-2 bg-white py-2 px-4 rounded-full">
                 <input
                   type="checkbox"
                   checked={selectedFilters.social_medias.includes(social)}
@@ -82,7 +83,7 @@ export default function FilterModal({ isOpen, onClose, onSave }: { isOpen: boole
             onClick={onSaveFilters}
             customStyle="w-32"
             variant="default"
-            defaultText="Aplicar filtros"
+            defaultText={t("Aplicar filtros")}
           />
         </div>
       </div>

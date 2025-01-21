@@ -31,6 +31,7 @@ import { getSubscription, getActiveUserId } from "@/app/actions/(socialmood)/aut
 import { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
 import { getRuleSubcategories, getSocialMediaAccounts, getRule, createChildRule } from "@/app/actions/(socialmood)/rules.actions";
+import { useTranslation } from "react-i18next";
 
 interface CreateRuleChildProps {
     onOpenChange: (newOpenValue: boolean, action: string) => void;
@@ -38,6 +39,8 @@ interface CreateRuleChildProps {
 }
 
 export default function CreateRuleChild({ onOpenChange, parentID }: CreateRuleChildProps) {
+
+    const {t} = useTranslation();
 
     const [isPending, setIsPending] = useState(false);
 
@@ -48,19 +51,19 @@ export default function CreateRuleChild({ onOpenChange, parentID }: CreateRuleCh
     const [Subcategorias, SetSubcategorias] = useState([
         {
             id: "1",
-            label: "Recomendación",
+            label: t("Recomendación"),
         },
         {
             id: "2",
-            label: "Consulta",
+            label: t("Consulta"),
         },
         {
             id: "3",
-            label: "Queja",
+            label: t("Queja"),
         },
         {
             id: "4",
-            label: "Elogio",
+            label: t("Elogio"),
         }
     ]);
 
@@ -168,14 +171,14 @@ export default function CreateRuleChild({ onOpenChange, parentID }: CreateRuleCh
                     <DialogHeader className="w-full">
                         <DialogTitle className="flex justify-between w-full mt-6">
                             <div className="flex"><img src="/magic-wand.svg" className="w-[49px] h-[49px]" />
-                                <h1 className="ml-2 text-[40px]">Crear Regla Hijo</h1>
+                                <h1 className="ml-2 text-[40px]">{t('Crear Regla Hijo')}</h1>
                             </div>
                             <SocialButton
                                 variant="default"
                                 isPending={isPending}
-                                defaultText="Guardar"
+                                defaultText={t("Guardar")}
                                 customStyle="text-[20px]"
-                                pendingText="Guardando..."
+                                pendingText={t("Guardando...")}
                                 type="button"
                                 onClick={() => { onSubmit(form.getValues()) }}
                             />
@@ -194,7 +197,7 @@ export default function CreateRuleChild({ onOpenChange, parentID }: CreateRuleCh
                                             <FormItem>
                                                 <FormControl>
                                                     <Input
-                                                        placeholder="Alias de la regla"
+                                                        placeholder={t("Alias de la regla")}
                                                         className="w-full px-3 py-2 
                             rounded-[10px] 
                             focus:outline-none focus:ring-2 focus:ring-primary 
@@ -216,7 +219,7 @@ export default function CreateRuleChild({ onOpenChange, parentID }: CreateRuleCh
                                         name="red_social"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Red Social</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Red Social')}</FormLabel>
                                                 <FormControl>
                                                     <Select name="red_social" onValueChange={field.onChange} value={redSocial}>
                                                         <SelectTrigger disabled className="w-full px-3 py-2 
@@ -243,7 +246,7 @@ export default function CreateRuleChild({ onOpenChange, parentID }: CreateRuleCh
                                         name="subcategorias"
                                         render={() => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Subcategorias</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Subcategorias')}</FormLabel>
                                                 {Subcategorias.map((item) => (
                                                     <FormField
                                                         key={item.id}
@@ -287,7 +290,7 @@ export default function CreateRuleChild({ onOpenChange, parentID }: CreateRuleCh
                                         name="tipo"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Tipo</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Tipo')}</FormLabel>
                                                 <FormControl>
                                                     <Select name="tipo" onValueChange={field.onChange} defaultValue={field.value}>
                                                         <SelectTrigger disabled className="w-full px-3 py-2 
@@ -297,8 +300,8 @@ export default function CreateRuleChild({ onOpenChange, parentID }: CreateRuleCh
                                                             <SelectValue />
                                                         </SelectTrigger>
                                                         <SelectContent>
-                                                            <SelectItem value="1">Padre</SelectItem>
-                                                            <SelectItem value="2">Hijo</SelectItem>
+                                                            <SelectItem value="1">{t('Padre')}</SelectItem>
+                                                            <SelectItem value="2">{t('Hijo')}</SelectItem>
                                                         </SelectContent>
                                                     </Select>
                                                 </FormControl>
@@ -315,9 +318,9 @@ export default function CreateRuleChild({ onOpenChange, parentID }: CreateRuleCh
                                         name="instrucciones"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="block text-sm font-medium">Instrucciones</FormLabel>
+                                                <FormLabel className="block text-sm font-medium">{t('Instrucciones')}</FormLabel>
                                                 <FormControl>
-                                                    <Textarea placeholder="Redactar instrucciones..." className="w-full px-3 py-2 
+                                                    <Textarea placeholder={t("Redactar instrucciones...")} className="w-full px-3 py-2 
                     rounded-[12px] border-transparent
                     focus:outline-none focus:ring-2 focus:ring-primary
                     bg-[#EBEBEB] text-black " {...field} />

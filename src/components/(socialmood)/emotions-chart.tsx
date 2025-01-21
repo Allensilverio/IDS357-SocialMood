@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 
 import { getEmotions } from '@/app/actions/(socialmood)/get-interactions.actions';
+import { useTranslation } from 'react-i18next';
 
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -22,6 +23,8 @@ interface EmotionsChartProps {
 
 const EmotionsChart: React.FC<EmotionsChartProps> = ({ filter = {} }) => {
     const [emotions, setEmotions] = React.useState<[string, number][] | null>(null);
+
+    const {t} = useTranslation();
 
     // Obtener las emociones desde el backend
     const fetchEmotions = async () => {
@@ -58,7 +61,7 @@ const EmotionsChart: React.FC<EmotionsChartProps> = ({ filter = {} }) => {
         labels: emotions?.map(([emotion]) => emotion) ?? [], // Etiquetas de las emociones
         datasets: [
             {
-                label: 'Emociones', // Título del dataset
+                label: t('Emociones'), // Título del dataset
                 data: emotions?.map(([_, frequency]) => frequency) ?? [], // Frecuencia de cada emoción
                 backgroundColor: getBackgroundColors(emotions?.map(([emotion]) => emotion) ?? []), // Colores predefinidos
                 borderRadius: 10, // Bordes redondeados para las barras
@@ -74,7 +77,7 @@ const EmotionsChart: React.FC<EmotionsChartProps> = ({ filter = {} }) => {
             },
             title: {
                 display: true,
-                text: 'Emociones',
+                text: t('Emociones'),
                 font: {
                     size: 18,
                     family: 'Arial',
@@ -112,7 +115,7 @@ const EmotionsChart: React.FC<EmotionsChartProps> = ({ filter = {} }) => {
                 <Bar data={data} options={options} />
             ) : (
                 <div className="flex justify-center items-center h-full">
-                    <p className="text-white text-lg">Cargando...</p>
+                    <p className="text-white text-lg">{t('Cargando'+'...')}</p>
                 </div>
             )}
         </div>

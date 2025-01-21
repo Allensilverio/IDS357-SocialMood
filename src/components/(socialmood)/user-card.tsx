@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { User } from "lucide-react"
 import { getActiveUserName } from '@/app/actions/(socialmood)/auth.actions'
+import { useTranslation } from 'react-i18next';
 
 
 interface UserCardProps {
@@ -11,6 +12,8 @@ interface UserCardProps {
 
 
 export default function UserCard({ onShowSettings }: UserCardProps) {
+
+  const {t} = useTranslation();
 
 
   const [userName, setUserName] = useState<string>("")
@@ -36,7 +39,7 @@ export default function UserCard({ onShowSettings }: UserCardProps) {
       </div>
       <div className='text-left'>
         <p className="font-medium">{userName}</p>
-        <p className="text-xs text-gray-400">Gestor de comunidad</p>
+        <p className="text-xs text-gray-400">{t('user-card.Gestor de comunidad')}</p>
       </div>
     </button>
   )

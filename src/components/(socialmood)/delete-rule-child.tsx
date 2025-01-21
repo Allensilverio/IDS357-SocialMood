@@ -15,12 +15,16 @@ import { toast } from "@/components/ui/use-toast";
 
 import { deleteRule, ruleHasChildren } from "@/app/actions/(socialmood)/rules.actions";
 
+import { useTranslation } from "react-i18next";
+
 interface DeleteRuleChildProps {
     ruleID: number;
     onOpenChange: (newOpenValue: boolean, action: string) => void;
 }
 
 export default function DeleteRuleChild({ ruleID, onOpenChange }: DeleteRuleChildProps) {
+
+    const {t} = useTranslation();
 
     const [isPending, setIsPending] = useState(false);
 
@@ -50,12 +54,12 @@ export default function DeleteRuleChild({ ruleID, onOpenChange }: DeleteRuleChil
         <DialogContent>
             <DialogHeader className="flex items-center justify-center">
                 <img src="/thinking-face.svg" alt="Alert" className="w-66 h-66" />
-                <DialogTitle><h1 className="text-[33px]">CONFIRMACIÓN</h1></DialogTitle>
+                <DialogTitle><h1 className="text-[33px]">{t('CONFIRMACIÓN')}</h1></DialogTitle>
             </DialogHeader>
 
             <DialogDescription className="w-[70%]">
                 <hr className="my-3" />
-                <p className="text-[18px] text-center">¿Estás seguro de que quieres eliminar estar regla?</p>
+                <p className="text-[18px] text-center">{t('¿Estás seguro de que quieres eliminar estar regla?')}</p>
 
                 <div className="mt-12 flex items-center justify-center space-x-2 ">
                     <SocialButton
@@ -67,8 +71,8 @@ export default function DeleteRuleChild({ ruleID, onOpenChange }: DeleteRuleChil
 
                     <SocialButton
                         variant="default"
-                        defaultText="Eliminar"
-                        pendingText="Eliminando..."
+                        defaultText={t("Eliminar")}
+                        pendingText={t("Eliminando...")}
                         customStyle="text-[20px]"
                         isPending={isPending}
                         onClick={handleDeleteRule}

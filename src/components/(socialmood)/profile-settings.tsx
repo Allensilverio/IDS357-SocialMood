@@ -10,6 +10,7 @@ import Modal from '@/components/(socialmood)/modal'
 import { useState } from 'react'
 import BlurredContainer from './blur-background'
 import InstructionCard from './instruction-card'
+import { useTranslation } from 'react-i18next'
 
 
 
@@ -19,6 +20,8 @@ interface ProfileSettingsProps {
 
 export default function ProfileSettings({ onClose }: ProfileSettingsProps) {
 
+  const {t} = useTranslation();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -27,15 +30,15 @@ export default function ProfileSettings({ onClose }: ProfileSettingsProps) {
 
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50 px-[25vh]">
+    <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50 px-[5vh]">
       <div className="bg-[#2C2436] text-white p-10 rounded-3xl w-full overflow-y-auto">
         <header className="flex items-center mb-6 pr-4">
           <button onClick={onClose} className="mr-4" aria-label="Volver">
             <ArrowLeft className="w-6 h-6" />
           </button>
           <div className='flex justify-between items-center w-full'>
-            <h1 className="text-3xl font-bold">Ajustes de Perfil</h1>
-            <button className='underline flex items-center font-medium' onClick={openModal}>Ayuda<IoIosInformationCircle size={18} className='ml-1' /></button>
+            <h1 className="text-3xl font-bold">{t('Ajustes de Perfil')}</h1>
+            <button className='underline flex items-center font-medium' onClick={openModal}>{t('Ayuda')}<IoIosInformationCircle size={18} className='ml-1' /></button>
           </div>
         </header>
 

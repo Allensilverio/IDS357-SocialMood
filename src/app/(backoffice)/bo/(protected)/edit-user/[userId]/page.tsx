@@ -1,10 +1,14 @@
 'use client';
 import React, { useState, useEffect, ChangeEvent } from 'react';
-import { Button } from '@/components/ui/button';
+import BlurredContainer from "@/components/(socialmood)/blur-background";
 import { ChevronLeft } from 'lucide-react';
 import { useRouter, useParams } from 'next/navigation';
 import { getUserById, updateUserById } from '@/app/actions/(backoffice)/user.actions';
 import UserForm from '@/components/(backoffice)/edit-user-form';
+import Image from "next/image";
+import { toast } from "@/components/ui/use-toast";
+
+
 
 interface FormData {
   nombre: string;
@@ -87,11 +91,18 @@ export default function EditUserPage() {
     setError(null);
     try {
       await updateUserById(userId, formData);
-      alert('Usuario actualizado correctamente');
+      toast({
+        variant: "default",
+        description: "Usuario actualizado correctamente",
+      });
       router.push('/bo/layout/user-table'); // Redirige a la lista de usuarios tras actualizar
     } catch (err) {
       setError('Error al actualizar el usuario');
       console.error(err);
+      toast({
+        variant: "destructive",
+        description: "Error al actualizar el usuario",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -117,6 +128,10 @@ export default function EditUserPage() {
             handleSubmit={handleSubmit} // Asegúrate de pasar el handleSubmit aquí
           />
         )}
+      </div>
+      {/* Lado Derecho */}
+      <div className="flex-1 bg-backgroundPurple p-2 flex items-center justify-center">
+        <BlurredContainer customStyle="h-[300px]"> <Image className="" src={"/socialmood-logo.svg"} width={400} height={70} alt={""} /></BlurredContainer>
       </div>
     </div>
   );

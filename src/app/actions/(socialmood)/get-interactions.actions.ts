@@ -20,6 +20,7 @@ interface Interacciones {
     subcategoria: string;
     fecha: string;
     respondida: boolean;
+    enlace_publicacion: string;
 }
 
 interface Respuestas {
@@ -31,6 +32,7 @@ interface Respuestas {
     subcategoria: string;
     comment_id: string;
     fecha: string;
+    enlace_publicacion: string;
 }
 
 interface UpdateResult {
@@ -90,7 +92,8 @@ export async function getInteractions() {
                 categoria: interaction.categoria,
                 subcategoria: interaction.subcategoria,
                 fecha: formattedDate,
-                respondida: interaction.respondida
+                respondida: interaction.respondida,
+                enlace_publicacion: interaction.enlace_publicacion
             };
 
             formattedInteractions.push(formattedInteraction);
@@ -206,7 +209,8 @@ export async function getInteractionsFiltered(filter: any) {
                 categoria: interaction.categoria,
                 subcategoria: interaction.subcategoria,
                 fecha: formattedDate,
-                respondida: interaction.respondida
+                respondida: interaction.respondida,
+                enlace_publicacion: interaction.enlace_publicacion
             };
             formattedInteractions.push(formattedInteraction);
         });
@@ -275,6 +279,7 @@ export async function getRespuestas() {
                 unique_code: respuesta.unique_code,
                 comment_id: respuesta.comment_id,
                 fecha: formattedDate,
+                enlace_publicacion: respuesta.enlace_publicacion
             }
             formattedRespuestas.push(formattedInteraction);
         });
@@ -391,7 +396,8 @@ export async function getRespuestasFiltered(filter: any) {
                 subcategoria: respuesta.subcategoria,
                 unique_code: respuesta.unique_code,
                 comment_id: respuesta.comment_id,
-                fecha: formattedDate
+                fecha: formattedDate,
+                enlace_publicacion: respuesta.enlace_publicacion
             };
             formattedRespuestas.push(formattedInteraction);
         });

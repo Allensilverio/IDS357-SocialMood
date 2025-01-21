@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { signOut } from '@/app/actions/(backoffice)/auth.actions'
 import { countUnansweredInteractions } from '@/app/actions/(socialmood)/get-interactions.actions'
+import { useTranslation } from 'react-i18next';
 
 interface MenuItem {
   id: string
@@ -21,27 +22,30 @@ interface SubMenuItem {
   color: string
 }
 
-const menuItems: MenuItem[] = [
-  {
-    id: 'dashboard',
-    label: 'Informes y analíticas',
-    route: '/app/dashboard',
-    icon: <span className="text-xl">📊</span>,
-  },
-  {
-    id: 'interactions',
-    label: 'Interacciones',
-    route: '/app/listado-interacciones',
-    icon: <span className="text-xl">💬</span>,
-    subItems: [
-      { id: 'interactions', label: 'Interacciones', route: '/app/listado-interacciones', color: '#F59E0B' },
-      { id: 'responses', label: 'Respuestas', route: '/app/respuestas', color: '#10B981' },
-      { id: 'rules', label: 'Reglas', route: '/app/reglas', color: '#F59E0B' },
-    ],
-  },
-]
-
 export default function Sidebar() {
+
+  const {t} = useTranslation();
+
+  const menuItems: MenuItem[] = [
+    {
+      id: 'dashboard',
+      label: t('sidebar.Informes'),
+      route: '/app/dashboard',
+      icon: <span className="text-xl">📊</span>,
+    },
+    {
+      id: 'interactions',
+      label: t('sidebar.Interacciones'),
+      route: '/app/listado-interacciones',
+      icon: <span className="text-xl">💬</span>,
+      subItems: [
+        { id: 'interactions', label: t('Interacciones'), route: '/app/listado-interacciones', color: '#F59E0B' },
+        { id: 'responses', label: t('Respuestas'), route: '/app/respuestas', color: '#10B981' },
+        { id: 'rules', label: t('Reglas'), route: '/app/reglas', color: '#F59E0B' },
+      ],
+    },
+  ]
+
   const [expandedItem, setExpandedItem] = useState<string | null>('interactions')
   const [selectedItem, setSelectedItem] = useState<string>('')
   const [unansweredCounts, setUnansweredCounts] = useState<Record<string, number>>({})
@@ -144,7 +148,7 @@ export default function Sidebar() {
 
       <button className="mt-auto p-2 rounded hover:bg-gray-800 flex items-center" onClick={handleSignOut}>
         <LogOut size={18} className="mr-3" />
-        Cerrar sesión
+        {t('Cerrar sesión')}
       </button>
     </div>
   )
